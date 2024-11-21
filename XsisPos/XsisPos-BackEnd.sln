@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsisPos.Api", "XsisPos.Api\XsisPos.Api.csproj", "{AA5483BE-B103-4B1D-808B-3F620EABA8F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsisPos.Dto", "XsisPos.Dto\XsisPos.Dto.csproj", "{2371479C-AC14-4565-884A-C686530572CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AA5483BE-B103-4B1D-808B-3F620EABA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5483BE-B103-4B1D-808B-3F620EABA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5483BE-B103-4B1D-808B-3F620EABA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2371479C-AC14-4565-884A-C686530572CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2371479C-AC14-4565-884A-C686530572CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2371479C-AC14-4565-884A-C686530572CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2371479C-AC14-4565-884A-C686530572CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
