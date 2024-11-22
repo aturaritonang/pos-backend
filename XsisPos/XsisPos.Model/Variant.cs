@@ -1,9 +1,12 @@
-﻿namespace XsisPos.Dto
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace XsisPos.Model
 {
-    public class VariantDto : BaseDto
+    [Table("Variants")]
+    public class Variant : BaseSchema
     {
         public int Id { get; set; }
-        public ProductDto Product { get; set; } = default!;
+        public int ProductId { get; set; } = default!;
         public string Initial { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

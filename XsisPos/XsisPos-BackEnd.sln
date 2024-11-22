@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsisPos.Api", "XsisPos.Api\XsisPos.Api.csproj", "{AA5483BE-B103-4B1D-808B-3F620EABA8F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsisPos.Dto", "XsisPos.Dto\XsisPos.Dto.csproj", "{2371479C-AC14-4565-884A-C686530572CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XsisPos.Model", "XsisPos.Model\XsisPos.Model.csproj", "{8305EF6C-5C4F-4103-9524-0B417853B94F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2371479C-AC14-4565-884A-C686530572CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2371479C-AC14-4565-884A-C686530572CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2371479C-AC14-4565-884A-C686530572CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8305EF6C-5C4F-4103-9524-0B417853B94F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8305EF6C-5C4F-4103-9524-0B417853B94F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8305EF6C-5C4F-4103-9524-0B417853B94F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8305EF6C-5C4F-4103-9524-0B417853B94F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

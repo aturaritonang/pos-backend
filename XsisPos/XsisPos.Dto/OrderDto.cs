@@ -1,15 +1,14 @@
 ﻿namespace XsisPos.Dto
 {
-    public class OrderHeaderDto
+    public class OrderHeaderDto : BaseDto
     {
         public int Id { get; set; }
         public string Reference { get; set; } = default!;
         public decimal Amount { get; set; }
         public List<OrderDetailDto> Details { get; set; } = default!;
-        public DateTime DateTime { get; set; }
     }
 
-    public class OrderDetailDto
+    public class OrderDetailDto : BaseDto
     {
         public int Id { get; set; }
         public int HeaderId { get; set; }
