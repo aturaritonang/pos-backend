@@ -1,4 +1,7 @@
-﻿namespace XsisPos.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace XsisPos.Model
 {
     public class BaseSchema
     {
