@@ -45,6 +45,11 @@ namespace XsisPos.Api.Repositories
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ProductDto> GetByIds(List<int> ids)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ProductDto> GetByParentId(int id)
         {
             throw new NotImplementedException();

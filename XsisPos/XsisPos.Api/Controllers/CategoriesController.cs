@@ -45,6 +45,19 @@ namespace XsisPos.Api.Controllers
             }
         }
 
+        [HttpGet("any")]
+        public IActionResult ByIds([FromQuery] List<int> ids)
+        {
+            try
+            {
+                return Ok(_repo.GetByIds(ids));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
 
         [HttpPost]
         public CategoryDto Create(ModifyCategoryDto modifyCategoryDto)

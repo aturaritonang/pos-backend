@@ -5,6 +5,7 @@
         IEnumerable<T> GetAll();
         IEnumerable<T> GetByParentId(int id);
         T GetById(int id);
+        IEnumerable<T> GetByIds(List<int> ids);
         T Create(T entity);
         T Update(T entity);
     }

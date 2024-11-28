@@ -59,6 +59,20 @@ namespace XsisPos.Api.Repositories
                 }).FirstOrDefault()!;
         }
 
+        public IEnumerable<CategoryDto> GetByIds(List<int> ids)
+        {
+            return _context.Categories.Where(o => ids.Contains(o.Id))
+                .Select(o => new CategoryDto()
+                {
+                    Id = o.Id,
+                    Initial = o.Initial,
+                    Name = o.Name,
+                    Description = o.Description,
+                    Active = o.Active,
+                    Created = o.Created,
+                });
+        }
+
         public IEnumerable<CategoryDto> GetByParentId(int id)
         {
             throw new NotImplementedException();
@@ -68,7 +82,7 @@ namespace XsisPos.Api.Repositories
         {
             Category? category = _context.Categories
                 .Where(c => c.Id == entity.Id).FirstOrDefault();
-            
+
             if (category == null)
             {
                 entity.Id = 0;
