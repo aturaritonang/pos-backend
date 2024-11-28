@@ -30,6 +30,7 @@ namespace XsisPos.Api.Repositories
                     Name = o.Name,
                     Description = o.Description,
                     Active = o.Active,
+                    Created = o.Created,
                     Category = new CategoryDto()
                     {
                         Id = o.Category.Id, 

@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using XsisPos.Api.Repositories;
 using XsisPos.Dto;
-using XsisPos.Model;
 
 namespace XsisPos.Api.Controllers
 {
@@ -19,9 +17,58 @@ namespace XsisPos.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CategoryDto> All()
+        public IActionResult All()
         {
-            return _repo.GetAll();
+            try
+            {
+                _logger.LogInformation("Get all categories");
+                return Ok(_repo.GetAll());
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult ById(int id)
+        {
+            try
+            {
+                return Ok(_repo.GetById(id));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
+
+
+        [HttpPost]
+        public CategoryDto Create(ModifyCategoryDto modifyCategoryDto)
+        {
+            return _repo.Create(new CategoryDto()
+            {
+                Initial = modifyCategoryDto.Initial,
+                Name = modifyCategoryDto.Name,
+                Description = modifyCategoryDto.Description,
+                Active = modifyCategoryDto.Active
+            });
+        }
+
+        [HttpPut]
+        public CategoryDto Update(ModifyCategoryDto modifyCategoryDto)
+        {
+            return _repo.Update(new CategoryDto()
+            {
+                Id = modifyCategoryDto.Id,
+                Initial = modifyCategoryDto.Initial,
+                Name = modifyCategoryDto.Name,
+                Description = modifyCategoryDto.Description,
+                Active = modifyCategoryDto.Active
+            });
         }
     }
 }

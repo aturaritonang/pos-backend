@@ -17,7 +17,18 @@ namespace XsisPos.Api.Repositories
 
         public CategoryDto Create(CategoryDto entity)
         {
-            throw new NotImplementedException();
+            Category category = new Category();
+            category.Name = entity.Name;
+            category.Initial = entity.Initial;
+            category.Description = entity.Description;
+            category.Active = entity.Active;
+
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+
+            entity.Id = category.Id;
+            entity.Created = category.Created;
+            return entity;
         }
 
         public IEnumerable<CategoryDto> GetAll()
@@ -35,7 +46,17 @@ namespace XsisPos.Api.Repositories
 
         public CategoryDto GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Categories
+                .Where(c => c.Id == id)
+                .Select(c => new CategoryDto()
+                {
+                    Id = c.Id,
+                    Initial = c.Initial,
+                    Name = c.Name,
+                    Description = c.Description,
+                    Active = c.Active,
+                    Created = c.Created,
+                }).FirstOrDefault()!;
         }
 
         public IEnumerable<CategoryDto> GetByParentId(int id)
@@ -45,7 +66,24 @@ namespace XsisPos.Api.Repositories
 
         public CategoryDto Update(CategoryDto entity)
         {
-            throw new NotImplementedException();
+            Category? category = _context.Categories
+                .Where(c => c.Id == entity.Id).FirstOrDefault();
+            
+            if (category == null)
+            {
+                entity.Id = 0;
+                return entity;
+            }
+
+            category.Name = entity.Name;
+            category.Initial = entity.Initial;
+            category.Description = entity.Description;
+            category.Active = entity.Active;
+
+            _context.SaveChanges();
+
+            entity.Created = category.Created;
+            return entity;
         }
     }
 }
