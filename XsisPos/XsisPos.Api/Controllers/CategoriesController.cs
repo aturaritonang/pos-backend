@@ -76,7 +76,7 @@ namespace XsisPos.Api.Controllers
         {
             return _repo.Update(new CategoryDto()
             {
-                Id = modifyCategoryDto.Id,
+                Id = (int)modifyCategoryDto.Id,
                 Initial = modifyCategoryDto.Initial,
                 Name = modifyCategoryDto.Name,
                 Description = modifyCategoryDto.Description,

@@ -11,7 +11,7 @@
 
     public class ModifyCategoryDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Initial { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string? Description { get; set; }
