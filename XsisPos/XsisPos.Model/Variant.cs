@@ -14,7 +14,7 @@ namespace XsisPos.Model
         public string Description { get; set; } = default!;
         public decimal Stock { get; set; }
         public decimal Price { get; set; }
-        public decimal Discount { get; set; }
+        //public decimal Discount { get; set; }
         public bool Active { get; set; }
 
         [ForeignKey(nameof(ProductId))]
