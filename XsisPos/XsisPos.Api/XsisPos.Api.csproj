@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XsisPos.Dto\XsisPos.Dto.csproj" />
     <ProjectReference Include="..\XsisPos.Model\XsisPos.Model.csproj" />
   </ItemGroup>
 
