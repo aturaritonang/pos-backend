@@ -20,6 +20,11 @@ namespace XsisPos.Api.Repositories
             throw new NotImplementedException();
         }
 
+        public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ProductDto> GetAll()
         {
             return _context.Products

@@ -8,5 +8,6 @@
         IEnumerable<T> GetByIds(List<int> ids);
         T Create(T entity);
         T Update(T entity);
+        bool Delete(int id);
     }
 }

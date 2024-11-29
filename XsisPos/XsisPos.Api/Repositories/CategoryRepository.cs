@@ -31,6 +31,18 @@ namespace XsisPos.Api.Repositories
             return entity;
         }
 
+        public bool Delete(int id)
+        {
+            Category? category = _context.Categories.FirstOrDefault(c => c.Id == id);
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public IEnumerable<CategoryDto> GetAll()
         {
             return _context.Categories.Select(o => new CategoryDto()

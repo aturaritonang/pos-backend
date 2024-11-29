@@ -83,5 +83,11 @@ namespace XsisPos.Api.Controllers
                 Active = modifyCategoryDto.Active
             });
         }
+
+        [HttpDelete("{id}")]
+        public bool Delete(int id)
+        {
+            return _repo.Delete(id);
+        }
     }
 }
