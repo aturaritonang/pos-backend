@@ -9,7 +9,7 @@
         public bool Active { get; set; }
     }
 
-    public class ModifyCategoryDto
+    public class ChangeCategoryDto
     {
         public int? Id { get; set; }
         public string Initial { get; set; } = default!;

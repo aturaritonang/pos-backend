@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<XsisPosDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("XsisPosConnection")));
 builder.Services.AddDbContext<XsisPosDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("XsisPosConnection")));
 
-builder.Services.AddScoped<ICategoryRepository<CategoryDto>, CategoryRepository>();
-builder.Services.AddScoped<IProductRepository<ProductDto>, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository<CategoryDto, ChangeCategoryDto>, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository<ProductDto, ChangeProductDto>, ProductRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

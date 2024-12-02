@@ -9,8 +9,8 @@ namespace XsisPos.Api.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ILogger<CategoriesController> _logger;
-        private ICategoryRepository<CategoryDto> _repo;
-        public CategoriesController(ILogger<CategoriesController> logger, ICategoryRepository<CategoryDto> repo)
+        private ICategoryRepository<CategoryDto, ChangeCategoryDto> _repo;
+        public CategoriesController(ILogger<CategoriesController> logger, ICategoryRepository<CategoryDto, ChangeCategoryDto> repo)
         {
             _logger = logger;
             _repo = repo;
@@ -60,34 +60,21 @@ namespace XsisPos.Api.Controllers
         }
 
         [HttpPost]
-        public CategoryDto Create(ModifyCategoryDto modifyCategoryDto)
+        public IActionResult Create(ChangeCategoryDto changeCategoryDto)
         {
-            return _repo.Create(new CategoryDto()
-            {
-                Initial = modifyCategoryDto.Initial,
-                Name = modifyCategoryDto.Name,
-                Description = modifyCategoryDto.Description,
-                Active = modifyCategoryDto.Active
-            });
+            return Ok(_repo.Create(changeCategoryDto));
         }
 
         [HttpPut]
-        public CategoryDto Update(ModifyCategoryDto modifyCategoryDto)
+        public IActionResult Update(ChangeCategoryDto changeCategoryDto)
         {
-            return _repo.Update(new CategoryDto()
-            {
-                Id = (int)modifyCategoryDto.Id,
-                Initial = modifyCategoryDto.Initial,
-                Name = modifyCategoryDto.Name,
-                Description = modifyCategoryDto.Description,
-                Active = modifyCategoryDto.Active
-            });
+            return Ok(_repo.Update(changeCategoryDto));
         }
 
         [HttpDelete("{id}")]
-        public bool Delete(int id)
+        public IActionResult Delete(int id)
         {
-            return _repo.Delete(id);
+            return Ok(_repo.Delete(id));
         }
     }
 }

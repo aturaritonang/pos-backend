@@ -3,11 +3,13 @@ using XsisPos.Model;
 
 namespace XsisPos.Api.Repositories
 {
-    public interface ICategoryRepository<T> : IRepository<T> where T : class
+    public interface ICategoryRepository<T, U> : IRepository<T, U>
+        where T : class
+        where U : class
     {
     }
 
-    public class CategoryRepository : ICategoryRepository<CategoryDto>
+    public class CategoryRepository : ICategoryRepository<CategoryDto, ChangeCategoryDto>
     {
         private XsisPosDbContext _context;
         public CategoryRepository(XsisPosDbContext context)
@@ -15,21 +17,38 @@ namespace XsisPos.Api.Repositories
             _context = context;
         }
 
-        public CategoryDto Create(CategoryDto entity)
+        public CategoryDto Create(ChangeCategoryDto dto)
         {
-            Category category = new Category();
-            category.Name = entity.Name;
-            category.Initial = entity.Initial;
-            category.Description = entity.Description;
-            category.Active = entity.Active;
+            try
+            {
+                Category entity = new Category();
+                entity.Name = dto.Name;
+                entity.Initial = dto.Initial;
+                entity.Description = dto.Description;
+                entity.Active = dto.Active;
 
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+                _context.Categories.Add(entity);
+                _context.SaveChanges();
 
-            entity.Id = category.Id;
-            entity.Created = category.Created;
-            return entity;
+                return new CategoryDto()
+                {
+                    Id = entity.Id,
+                    Initial = dto.Initial,
+                    Name = dto.Name,
+                    Description = dto.Description,
+                    Active = dto.Active
+                };
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
+
+        //public CategoryDto Create(ChangeCategoryDto dto)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public bool Delete(int id)
         {
@@ -45,15 +64,16 @@ namespace XsisPos.Api.Repositories
 
         public IEnumerable<CategoryDto> GetAll()
         {
-            return _context.Categories.Select(o => new CategoryDto()
-            {
-                Id = o.Id,
-                Initial = o.Initial,
-                Name = o.Name,
-                Description = o.Description,
-                Active = o.Active,
-                Created = o.Created,
-            });
+            return _context.Categories
+                .Select(o => new CategoryDto()
+                {
+                    Id = o.Id,
+                    Initial = o.Initial,
+                    Name = o.Name,
+                    Description = o.Description,
+                    Active = o.Active,
+                    Created = o.Created,
+                });
         }
 
         public CategoryDto GetById(int id)
@@ -90,26 +110,67 @@ namespace XsisPos.Api.Repositories
             throw new NotImplementedException();
         }
 
-        public CategoryDto Update(CategoryDto entity)
+        //public CategoryDto Update(CategoryDto entity)
+        //{
+        //    Category? category = _context.Categories
+        //        .Where(c => c.Id == entity.Id).FirstOrDefault();
+
+        //    if (category == null)
+        //    {
+        //        entity.Id = 0;
+        //        return entity;
+        //    }
+
+        //    category.Name = entity.Name;
+        //    category.Initial = entity.Initial;
+        //    category.Description = entity.Description;
+        //    category.Active = entity.Active;
+
+        //    _context.SaveChanges();
+
+        //    entity.Created = category.Created;
+        //    return entity;
+        //}
+
+        public CategoryDto Update(ChangeCategoryDto dto)
         {
-            Category? category = _context.Categories
-                .Where(c => c.Id == entity.Id).FirstOrDefault();
-
-            if (category == null)
+            try
             {
-                entity.Id = 0;
-                return entity;
+                Category? entity = _context.Categories
+                    .Where(c => c.Id == dto.Id).FirstOrDefault();
+
+                if (entity == null)
+                {
+                    entity.Id = 0;
+                    return new CategoryDto()
+                    {
+                        Id = (int)dto.Id,
+                        Initial = dto.Initial,
+                        Name = dto.Name,
+                        Description = dto.Description,
+                        Active = dto.Active,
+                    };
+                }
+
+                entity.Name = dto.Name;
+                entity.Initial = dto.Initial;
+                entity.Description = dto.Description;
+                entity.Active = dto.Active;
+
+                _context.SaveChanges();
+                return new CategoryDto()
+                {
+                    Id = entity.Id,
+                    Initial = entity.Initial,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    Active = entity.Active,
+                };
             }
-
-            category.Name = entity.Name;
-            category.Initial = entity.Initial;
-            category.Description = entity.Description;
-            category.Active = entity.Active;
-
-            _context.SaveChanges();
-
-            entity.Created = category.Created;
-            return entity;
+            catch (Exception e)
+            {
+                return new CategoryDto();
+            }
         }
     }
 }
